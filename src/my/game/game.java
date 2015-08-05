@@ -9,16 +9,16 @@ import java.awt.event.* ;
  * @author chath_000
  */
 public class game extends javax.swing.JFrame {
-
+    public JButton[] btns; 
     /**
      * Creates new form game
      */
+    single program1 = new single();
+    multi program2 = new multi();
     public game() {
+        this.btns = new JButton[]{btn1, btn2, btn3, btn4, btn5, btn6, btn7, btn8, btn9};
+        
         initComponents();
-        
-        
-        
-        
         
     }
     
@@ -180,7 +180,8 @@ public class game extends javax.swing.JFrame {
     public int single = 0;
      
      
-     public String mark(int button){
+     public String mark(){
+         // changed int button part to void 
          if(count%2==0){ 
              count++;
              player1.setBackground(new Color(255,255,0));
@@ -405,6 +406,11 @@ public class game extends javax.swing.JFrame {
         PlayerGroup.add(btnMulti);
         btnMulti.setFont(new java.awt.Font("DialogInput", 0, 14)); // NOI18N
         btnMulti.setText("Multi-Players");
+        btnMulti.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnMultiActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout PlayersPanelLayout = new javax.swing.GroupLayout(PlayersPanel);
         PlayersPanel.setLayout(PlayersPanelLayout);
@@ -596,10 +602,8 @@ public class game extends javax.swing.JFrame {
 
     private void btn3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn3ActionPerformed
         btn3.setEnabled(false);
-        btn3.setText(mark(3));
-        int w = winner();
-        if((single==1)&(w != 1)){  String tem = mark(2);
-                        autoplay(compute(tem),tem);}
+        btn3.setText(mark());
+        btnInside(2);
         
     }//GEN-LAST:event_btn3ActionPerformed
 
@@ -610,17 +614,17 @@ public class game extends javax.swing.JFrame {
         
              
         if(single ==1){
-            single program = new single();
-            String[] names = program.getInf();
+            
+            String[] names = program1.getInf();
             setInfo(names); 
             if(player1.getText()=="Computer"){
-                    String tem = mark(2);
+                    String tem = mark();
                     autoplay(compute(tem),tem);
             }
         } 
         else{
-            multi program = new multi();
-            String[] names = program.getInf();
+            
+            String[] names = program2.getInf();
             setInfo(names); 
             player1.setBackground(new Color(0,255,255));
         }
@@ -630,13 +634,9 @@ public class game extends javax.swing.JFrame {
     }//GEN-LAST:event_btnStartActionPerformed
 
     private void btn8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn8ActionPerformed
-        // TODO add your handling code here:
-        //info.setText("8");
         btn8.setEnabled(false);
-        btn8.setText(mark(8));
-        int w = winner();
-        if((single==1)&(w != 1)){  String tem = mark(2);
-                        autoplay(compute(tem),tem);}
+        btn8.setText(mark());
+        btnInside(7);
     }//GEN-LAST:event_btn8ActionPerformed
 
     private void textchange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_textchange
@@ -646,66 +646,66 @@ public class game extends javax.swing.JFrame {
 
     private void btn9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn9ActionPerformed
         btn9.setEnabled(false);
-        btn9.setText(mark(9));
-        int w = winner();
-        if((single==1)&(w != 1)){  String tem = mark(2);
-                        autoplay(compute(tem),tem);}
-        // TODO add your handling code here:
+        btn9.setText(mark());
+        btnInside(8);
     }//GEN-LAST:event_btn9ActionPerformed
 
     private void btn7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn7ActionPerformed
         btn7.setEnabled(false);
-        btn7.setText(mark(7));
-        int w = winner();
-        if((single==1)&(w != 1)){  String tem = mark(2);
-                        autoplay(compute(tem),tem);}
-        // TODO add your handling code here:
+        btn7.setText(mark());
+        btnInside(6);
     }//GEN-LAST:event_btn7ActionPerformed
 
     private void btn6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn6ActionPerformed
         btn6.setEnabled(false);
-        btn6.setText(mark(6));
-        int w = winner();
-        if((single==1)&(w != 1)){  String tem = mark(2);
-                        autoplay(compute(tem),tem);}
-        // TODO add your handling code here:
+        btn6.setText(mark());
+        btnInside(5);
     }//GEN-LAST:event_btn6ActionPerformed
 
     private void btn5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn5ActionPerformed
         btn5.setEnabled(false);
-        btn5.setText(mark(5));
-        int w = winner();
-        if((single==1)&(w != 1)){  String tem = mark(2);
-                        autoplay(compute(tem),tem);}
-        // TODO add your handling code here:
+        btn5.setText(mark());
+        btnInside(4);
     }//GEN-LAST:event_btn5ActionPerformed
 
     private void btn4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn4ActionPerformed
         btn4.setEnabled(false);
-        btn4.setText(mark(4));
-        int w = winner();
-        if((single==1)&(w != 1)){  String tem = mark(2);
-                        autoplay(compute(tem),tem);}
+        btn4.setText(mark());
+        btnInside(3);
     }//GEN-LAST:event_btn4ActionPerformed
 
     private void btn2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn2ActionPerformed
         btn2.setEnabled(false);
-        btn2.setText(mark(2));
-        int w = winner();
-        if((single==1)&(w != 1)){  String tem = mark(2);
-                        autoplay(compute(tem),tem);}
-        // TODO add your handling code here:
+        btn2.setText(mark());
+        btnInside(1);
     }//GEN-LAST:event_btn2ActionPerformed
 
     private void btn1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn1ActionPerformed
         btn1.setEnabled(false);
-        btn1.setText(mark(1));
-        int w = winner();
-        if((single==1)&(w != 1)){  String tem = mark(2);
-                        autoplay(compute(tem),tem);}
-        // TODO add your handling code here:
+        btn1.setText(mark());
+        btnInside(0);
     }//GEN-LAST:event_btn1ActionPerformed
 
+    public void btnInside(int btn){
+        
+        int w = winner();
+        if((single==1)&(w != 1)){  String tem = mark();
+                        autoplay(compute(tem),tem);
+        }
+        else{
+        // multyplayer 
+            if (program2.getResult() == 1){//client 
+                //Thread
+                
+            }
+            else {
+            
+            
+            }
+        
+        }
+        // TODO add your handling code here:
+    }
     private void btnResetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnResetActionPerformed
             
         count = 0;
@@ -755,7 +755,7 @@ public class game extends javax.swing.JFrame {
             count =0;
             
             if(player1.getText()=="Computer"){
-                    String tem = mark(2);
+                    String tem = mark();
                     autoplay(compute(tem),tem);
                     System.out.println(count);
             }
@@ -763,6 +763,10 @@ public class game extends javax.swing.JFrame {
             
         // TODO add your handling code here:
     }//GEN-LAST:event_btnTryActionPerformed
+
+    private void btnMultiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMultiActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnMultiActionPerformed
 
     private void disablegame(){
             Component[] components = gamePanel.getComponents();
