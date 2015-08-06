@@ -3,6 +3,9 @@ package my.game;
 import javax.swing.*;
 import java.awt.* ;
 import java.awt.event.* ;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -15,8 +18,11 @@ public class game extends javax.swing.JFrame {
      */
     single program1 = new single();
     multi program2 = new multi();
+    Client c1 = new Client();
+    Server s1 = new Server();
+    String btnn;
     public game() {
-        this.btns = new JButton[]{btn1, btn2, btn3, btn4, btn5, btn6, btn7, btn8, btn9};
+        
         
         initComponents();
         
@@ -84,13 +90,13 @@ public class game extends javax.swing.JFrame {
        int winner = 0;
        
        for(int i=0; i<8 ; i++){
-            if((win[i][0] == "X")&(win[i][1] == "X")&(win[i][2] == "X")){ 
+            if(("X".equals(win[i][0]))&("X".equals(win[i][1]))&("X".equals(win[i][2]))){ 
                info.setText(player1.getText() +  " WINS!!!");
                disablegame();
                player13.setText("" + (Integer.parseInt(player13.getText().trim()) + 1));
                winner = 1;
                break;}
-            else if((win[i][0] == "O")&(win[i][1] == "O")&(win[i][2] == "O")){ 
+            else if(("O".equals(win[i][0]))&("O".equals(win[i][1]))&("O".equals(win[i][2]))){ 
                info.setText(player2.getText() +  " WINS!!!");
                disablegame();
                player23.setText("" + (Integer.parseInt(player23.getText().trim()) + 1));
@@ -601,9 +607,8 @@ public class game extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btn3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn3ActionPerformed
-        btn3.setEnabled(false);
-        btn3.setText(mark());
-        btnInside(2);
+        btn3Press();
+        btnInside("three");
         
     }//GEN-LAST:event_btn3ActionPerformed
 
@@ -614,7 +619,7 @@ public class game extends javax.swing.JFrame {
         
              
         if(single ==1){
-            
+            program1.begin();
             String[] names = program1.getInf();
             setInfo(names); 
             if(player1.getText()=="Computer"){
@@ -622,8 +627,8 @@ public class game extends javax.swing.JFrame {
                     autoplay(compute(tem),tem);
             }
         } 
-        else{
-            
+        else if(single ==0 ){
+            program2.begin();
             String[] names = program2.getInf();
             setInfo(names); 
             player1.setBackground(new Color(0,255,255));
@@ -634,9 +639,8 @@ public class game extends javax.swing.JFrame {
     }//GEN-LAST:event_btnStartActionPerformed
 
     private void btn8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn8ActionPerformed
-        btn8.setEnabled(false);
-        btn8.setText(mark());
-        btnInside(7);
+        btn8Press();
+        btnInside("eight");
     }//GEN-LAST:event_btn8ActionPerformed
 
     private void textchange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_textchange
@@ -645,66 +649,147 @@ public class game extends javax.swing.JFrame {
     }//GEN-LAST:event_textchange
 
     private void btn9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn9ActionPerformed
-        btn9.setEnabled(false);
-        btn9.setText(mark());
-        btnInside(8);
+        btn9Press();
+        btnInside("nine");
     }//GEN-LAST:event_btn9ActionPerformed
 
     private void btn7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn7ActionPerformed
-        btn7.setEnabled(false);
-        btn7.setText(mark());
-        btnInside(6);
+        btn7Press();
+        btnInside("seven");
     }//GEN-LAST:event_btn7ActionPerformed
 
     private void btn6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn6ActionPerformed
-        btn6.setEnabled(false);
-        btn6.setText(mark());
-        btnInside(5);
+        btn6Press();
+        btnInside("six");
     }//GEN-LAST:event_btn6ActionPerformed
 
     private void btn5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn5ActionPerformed
-        btn5.setEnabled(false);
-        btn5.setText(mark());
-        btnInside(4);
+        btn5Press();
+        btnInside("five");
     }//GEN-LAST:event_btn5ActionPerformed
 
     private void btn4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn4ActionPerformed
-        btn4.setEnabled(false);
-        btn4.setText(mark());
-        btnInside(3);
+        btn4Press();
+        btnInside("four");
     }//GEN-LAST:event_btn4ActionPerformed
 
     private void btn2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn2ActionPerformed
-        btn2.setEnabled(false);
-        btn2.setText(mark());
-        btnInside(1);
+        btn2Press();
+        btnInside("two");
     }//GEN-LAST:event_btn2ActionPerformed
 
     private void btn1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn1ActionPerformed
+        btn1Press();
+        btnInside("one");
+    }//GEN-LAST:event_btn1ActionPerformed
+    
+    public void btn1Press(){
         btn1.setEnabled(false);
         btn1.setText(mark());
-        btnInside(0);
-    }//GEN-LAST:event_btn1ActionPerformed
-
-    public void btnInside(int btn){
+    }
+    public void btn2Press(){
+        btn2.setEnabled(false);
+        btn2.setText(mark());
+    }
+    
+    public void btn3Press(){
+        btn3.setEnabled(false);
+        btn3.setText(mark());
+    }
+    public void btn4Press(){
+        btn4.setEnabled(false);
+        btn4.setText(mark());
+    }
+    public void btn5Press(){
+        btn5.setEnabled(false);
+        btn5.setText(mark());
+    }
+    public void btn6Press(){
+        btn6.setEnabled(false);
+        btn6.setText(mark());
+    }
+    public void btn7Press(){
+        btn7.setEnabled(false);
+        btn7.setText(mark());
+    }
+    public void btn8Press(){
+        btn8.setEnabled(false);
+        btn8.setText(mark());
+    }
+    
+    public void btn9Press(){
+        btn9.setEnabled(false);
+        btn9.setText(mark());
+    }
+    
+    public void btnInside(String btn){
         
         int w = winner();
-        if((single==1)&(w != 1)){  String tem = mark();
-                        autoplay(compute(tem),tem);
+        System.out.println(w + "," + single);
+        if((single==1)){  
+            String tem = mark();
+            autoplay(compute(tem),tem);
+            
         }
         else{
         // multyplayer 
-            if (program2.getResult() == 1){//client 
-                //Thread
+            //String vf = Integer.toString(btn);
+            if (program2.getResult() == 1){
+                try {
+                //client
+                    String ans = c1.start(btn);
+                    condi(ans);
+                } catch (IOException ex) {
+                    Logger.getLogger(game.class.getName()).log(Level.SEVERE, null, ex);
+                }
                 
             }
             else {
-            
+                //host
+                try {
+                    String ans = s1.start(btn);
+                    condi(ans);
+                } catch (IOException ex) {
+                    Logger.getLogger(game.class.getName()).log(Level.SEVERE, null, ex);
+                }
             
             }
         
         }
         // TODO add your handling code here:
+    }
+    
+    public void condi(String ans){
+        if(null != ans)switch (ans) {
+            case "one":
+                btn1Press();
+                break;
+            case "two":
+                btn2Press();
+                break;
+            case "three":
+                btn3Press();
+                break;
+            case "four":
+                btn4Press();
+                break;
+            case "five":
+                btn5Press();
+                break;
+            case "six":
+                btn6Press();
+                break;
+            case "seven":
+                btn7Press();
+                break;
+            case "eight":
+                btn8Press();
+                break;
+            case "nine":
+                btn9Press();
+                break;
+        }
+    
     }
     private void btnResetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnResetActionPerformed
             
@@ -754,7 +839,7 @@ public class game extends javax.swing.JFrame {
             
             count =0;
             
-            if(player1.getText()=="Computer"){
+            if("Computer".equals(player1.getText())){
                     String tem = mark();
                     autoplay(compute(tem),tem);
                     System.out.println(count);

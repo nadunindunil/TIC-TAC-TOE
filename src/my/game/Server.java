@@ -16,7 +16,7 @@ import java.io.*;
 
 public class Server{
 
-   	public void start() throws IOException{
+   	public String start(String s) throws IOException{
 		ServerSocket serverSocket = null;
 		try{
 			serverSocket = new ServerSocket(10007);
@@ -38,26 +38,33 @@ public class Server{
 		PrintWriter output = new PrintWriter(cs.getOutputStream(),true);
 		BufferedReader input = new BufferedReader(new InputStreamReader(cs.getInputStream()));
 		BufferedReader get = new BufferedReader(new InputStreamReader(System.in));
-		String il;
+		String s1;
+                String s2;
+                String il;
 		//while((li = input.readLine())!=null){
 
-		while(true){
-			//System.out.println("S:"+il);
-
-			il = input.readLine();
-			if(il.equals("Bye")){
-				break;
-			}
-			System.out.println("Client: " +il);
-			System.out.print("Server: ");
-			il = get.readLine();
-			output.println(il);
-
-		}
+//		while(true){
+//			//System.out.println("S:"+il);
+//
+//			il = input.readLine();
+//			if(il.equals("Bye")){
+//				break;
+//			}
+//			System.out.println("Client: " +il);
+//			System.out.print("Server: ");
+//			il = get.readLine();
+//			output.println(il);
+//
+//		}
+                s1 = input.readLine();
+                s2 = get.readLine();
+                output.println(s2);
+                
 		output.close();
 		input.close();
 		cs.close();
 		serverSocket.close();
+                return s2;
 	}
 
 }

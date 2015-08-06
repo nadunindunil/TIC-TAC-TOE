@@ -12,29 +12,23 @@ public class multi {
     private String play1;
     private String play2;
     public int result;
-    
-    
-    public  multi( ) {
-        
-            //game g1 = new game();
-            //label = g1.player1;
-            //g1.setInfo("dds");
- 
-            String names[];
+    String names[];
 
             
             
 //            String player1 = JOptionPane.showInputDialog("Enter Player 1 Name : ");
 //            String player2 = JOptionPane.showInputDialog("Enter Player 2 Name : ");
-            String player1 = "P1";
-            String player2 = "P2";
+    String player1 = "P1";
+    String player2 = "P2";
             
             
             
-            String[] buttons = { "Heads", "Tails" };
-            String[] serve = { "Host", "Client" };
-            
-            int select = JOptionPane.showOptionDialog(null, player1 +  "  calls the toss", "Toss",JOptionPane.WARNING_MESSAGE, 0, null, buttons, buttons[1]);
+    String[] buttons = { "Heads", "Tails" };
+    String[] serve = { "Host", "Client" };
+    
+  
+    public void begin(){
+        int select = JOptionPane.showOptionDialog(null, player1 +  "  calls the toss", "Toss",JOptionPane.WARNING_MESSAGE, 0, null, buttons, buttons[1]);
             //Tails = 1  Heads = 0
             result = JOptionPane.showOptionDialog(null, "Choose whether Host or Client","Choose", JOptionPane.WARNING_MESSAGE, 0, null, serve, "Client");
             
@@ -84,10 +78,8 @@ public class multi {
                 play2 = player1;
                 
             }
-            
-            
-            
-  }
+    
+    }
     
     public String[] getInf(){
             return new String[]{play1, play2};

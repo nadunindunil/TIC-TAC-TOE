@@ -25,9 +25,14 @@ public class Client{
 		try{
 			System.out.print("Enter IP: ");
 			ip = stdIn.readLine();
-			System.out.print("\nEnter Port: ");
-			port = stdIn.readLine();
-			socket = new Socket(ip,Integer.valueOf(port));
+			
+                        //ip = anything;
+                        
+                        //System.out.print("\nEnter Port: ");
+			
+                        port = stdIn.readLine();
+			
+                        socket = new Socket(ip,Integer.valueOf(port));
 			output = new PrintWriter(socket.getOutputStream(),true);
 			input = new BufferedReader(new InputStreamReader(socket.getInputStream()));
 		}catch(UnknownHostException e){
